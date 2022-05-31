@@ -33,8 +33,23 @@ public class CustomerService {
 
     }
 
-    public Integer getCustomerID(String username){
-        return cusRepo.findCustomerByUsername(username);
+    public String getCustomerID(String username){
+        Customer customer = cusRepo.findCustomerByUsername(username);
+        String customer_id = String.valueOf(customer.getId());
+        return customer_id;
+    }
+
+    public boolean alreadyExists(String username){
+        Customer customer = cusRepo.findByUsername(username);
+        boolean isCustomer = false;
+        try {
+            if(customer!= null){
+                isCustomer = true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return isCustomer;
     }
 
 

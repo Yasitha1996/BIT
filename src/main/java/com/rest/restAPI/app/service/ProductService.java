@@ -25,21 +25,33 @@ public class ProductService {
 
     }
 
-    public List<Product> findByCategory(String category) {
-        return productRepo.findBYCategory(category);
+    public List<Product> findByCategory(Integer category) {
+        List<Product> products = null;
+        try {
+            products = productRepo.findBYCategory(category);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return products;
     }
 
-    public String checkAvailability(Integer product_id) {
-        String result = productRepo.checkAvailability(product_id);
-        //Integer available_stock = Integer.valueOf(result);
-      /* if (qty<= available_stock){
-           Product product = productRepo.findProductByProduct_id(product_id);
-           product.setAvailable_stock(String.valueOf(available_stock-qty));
-           productRepo.save(product);
-           return "success";
-       } else {
-           return result;
-       }*/
+    public String checkAvailability(Integer product_id, Integer qty) {
+        String result =null;
+        try {
+            result = productRepo.checkAvailability(product_id);
+            Integer available_stock = Integer.valueOf(result);
+            if (qty <= available_stock) {
+                Product product = productRepo.findProduct(product_id);
+                product.setAvailable_stock(String.valueOf(available_stock - qty));
+                productRepo.save(product);
+                return "success";
+            } else {
+                return result;
+            }
+            // return result;
+        }catch (Exception e){
+            System.out.println(e);
+        }
         return result;
     }
 

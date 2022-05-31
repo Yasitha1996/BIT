@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_p")
 @Data
 public class Order {
 
@@ -17,11 +17,14 @@ public class Order {
     @Column(name = "total")
     private Integer total;
 
-    @Column(name = "date")
-    private Date date;
+   /* @Column(name = "date")
+    private Date date;*/
 
     @Column(name = "delivery_address")
     private String delivery_address;
+
+    @Column(name = "status")
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

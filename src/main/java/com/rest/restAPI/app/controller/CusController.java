@@ -19,11 +19,10 @@ public class CusController {
     @Autowired
     private CustomerService customerService;
 
-    @Autowired
-    CustomerVal val;
+   /* @Autowired
+    CustomerVal val;*/
 
-    @Autowired
-    private CusRepo cusRepo;
+
 
     @PostMapping(path = "/save", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody HashMap<String, String> register(@RequestBody Customer customer) {
@@ -31,15 +30,16 @@ public class CusController {
         HashMap<String, String> status = new HashMap<>();
 
         try {
-            HashMap<String, String> validationRes = val.registerCus(customer.getUsername());
+            //HashMap<String, String> validationRes = val.registerCus(customer.getUsername());
 
-            if (validationRes == null) {
+            if (customerService.alreadyExists(customer.getUsername()) == false) {
                 Customer cus = new Customer();
                 cus = customerService.register(customer);
                 status.put("msg", "Registered Successfully");
                 // return "Registered Successfully";
             } else {
-                return validationRes;
+                //return validationRes;
+                status.put("msg", "Username already taken");
             }
         } catch (Exception ex) {
             status.put("msg", "Registration failed");
@@ -71,6 +71,8 @@ public class CusController {
         try {
 
             Customer cus = customerService.login(bean.getUsername(), bean.getPassword());
+            String customer_id = customerService.getCustomerID(bean.getUsername());
+
             if (cus == null) {
                 status.put("msg", "Invalid Credentials");
                 status.put("code", "0");
@@ -79,6 +81,7 @@ public class CusController {
                 //String cusID = String.valueOf(customerService.getCustomerID(bean.getUsername()));
                 status.put("msg", "Login Successful!");
                 status.put("code", "1");
+                status.put("id", customer_id);
                 //status.put("id", String.valueOf(id));
                 //return new ResponseEntity<>("Login Successful!", HttpStatus.OK);
             }

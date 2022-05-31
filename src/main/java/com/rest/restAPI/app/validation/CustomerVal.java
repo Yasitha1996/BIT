@@ -13,7 +13,7 @@ public class CustomerVal {
     HashMap<String, String> status = new HashMap<>();
     @Autowired
     CusRepo cusRepo;
-    public HashMap<String, String> registerCus(String username){
+    /*public HashMap<String, String> registerCus(String username){
         Customer already = cusRepo.findByUsername(username);
         if(already != null){
             status.put("msg","User already exits");
@@ -22,5 +22,5 @@ public class CustomerVal {
             return null;
         }
         return status;
-    }
+    }*/
 }

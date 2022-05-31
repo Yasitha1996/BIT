@@ -10,5 +10,5 @@ public interface CusRepo extends JpaRepository<Customer, Integer> {
 
     Customer findCustomerByUsernameAndPassword(String username, String password);
 
-    public Integer findCustomerByUsername(String username);
+    public Customer findCustomerByUsername(String username);
 }

@@ -12,14 +12,15 @@ import java.util.List;
 @Table(name = "category")
 public class Category {
 
-    @Column(name = "category_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int category_id;
 
-    @Id
+
     @Column(name = "category_name")
     private String category_name;
 
     @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "category", referencedColumnName = "category_name")
+    @JoinColumn(name = "category", referencedColumnName = "category_id")
     private List<Product> products;
 }

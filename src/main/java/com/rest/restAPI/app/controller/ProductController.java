@@ -65,7 +65,7 @@ public class ProductController {
     }
 
     @GetMapping("/items")
-    public List<Product> findByCategory(@RequestParam String category){
+    public List<Product> findByCategory(@RequestParam Integer category){
         List<Product> productList = new ArrayList<>();
         productList =  productService.findByCategory(category);
         return productList;
@@ -75,22 +75,26 @@ public class ProductController {
     public @ResponseBody HashMap<String, String> checkAvailability (@RequestParam Integer product_id, @RequestParam Integer qty){
          System.out.println("p_id: "+product_id +" Qty: "+ qty);
          HashMap<String, String> result = new HashMap<>();
-         String status = productService.checkAvailability(product_id);
-         Integer stock = Integer.valueOf(status);
+         try {
+             String status = productService.checkAvailability(product_id, qty);
+             //Integer stock = Integer.valueOf(status);
 
-         if(stock>=qty){
-             result.put("msg", "Added to cart successfully");
-         } else {
-             result.put("msg", status+" item(s) are available at the moment");
+             /*if (stock >= qty) {
+                 result.put("msg", "Added to cart successfully");
+             } else {
+                 result.put("msg", status + " item(s) are available at the moment");
+             }*/
+
+             if (status.equals("success")){
+                 result.put("msg", "Added to cart successfully");
+             }else {
+                 result.put("msg", status+" item(s) are available at the moment");
+             }
+
+                 //result.put("stock",Integer.valueOf(available_stock));
+         }catch (Exception e){
+             result.put("msg", "System Error");
          }
-
-         /*if (status.equals("success")){
-             result.put("msg", "Added to cart successfully");
-         }else {
-             result.put("msg", status+" item(s) are available at the moment");
-         }*/
-
-         //result.put("stock",Integer.valueOf(available_stock));
          return result;
     }
 

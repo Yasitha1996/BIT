@@ -32,6 +32,11 @@ public class Customer {
     @Column(name = "phone")
     private String phone;
 
+    public Customer(){
+
+    }
+
+
     public int getId() {
         return id;
     }

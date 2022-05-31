@@ -1,5 +1,6 @@
 package com.rest.restAPI.app.controller;
 
+import com.rest.restAPI.app.bean.CartBean;
 import com.rest.restAPI.app.mapping.Order;
 import com.rest.restAPI.app.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,11 @@ public class OrderController {
     @Autowired
     private OrderService orderProductService;
 
-    @PostMapping("/add")
-    public Order orderProduct(@RequestBody Order orderProduct){
-        return orderProductService.add(orderProduct);
-    }
+    /*@PostMapping("/checkout")
+    public Order order(@RequestBody Order order){
+        return orderProductService.add(order);
+    }*/
+
 
     @GetMapping("/fetch")
     public List<Order> findAll(){
