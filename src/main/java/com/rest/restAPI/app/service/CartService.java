@@ -29,16 +29,21 @@ public class CartService {
         order.setDelivery_address(cartBean.getAddress());
         order.setTotal(cartBean.getAmount());
         order.setStatus("2");
+        System.out.println("test4");
 
 
         for (Map<String, Object> map: cartBean.getItems()) {
+            System.out.println("test2");
             Cart c = new Cart();
             c.setOrder(order);
             Product p = new Product();
+            System.out.println("test3");
             p.setProduct_id((Integer) map.get("product_id"));
             c.setProduct(p);
             c.setQuantity((Integer) map.get("qty"));
+            System.out.println("test5");
             cartRepo.save(c);
+            System.out.println("test6");
         }
         status = true;
 

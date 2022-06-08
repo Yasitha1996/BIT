@@ -55,6 +55,24 @@ public class ProductService {
         return result;
     }
 
+    public String updateInventory(Integer product_id, Integer qty) {
+        String result =null;
+        try {
+            result = productRepo.checkAvailability(product_id);
+            Integer available_stock = Integer.valueOf(result);
+
+                Product product = productRepo.findProduct(product_id);
+                product.setAvailable_stock(String.valueOf(available_stock + qty));
+                productRepo.save(product);
+                return "success";
+
+            // return result;
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return result;
+    }
+
     public Optional<Product> findProduct(Integer product_id) {
         return productRepo.findById(product_id);
     }

@@ -30,7 +30,7 @@ public class Product {
     private String unit_qty;
 
     @Column(name = "unit_price")
-    private String unit_price;
+    private double unit_price;
 
     @Column(name = "available_stock")
     private String available_stock;
@@ -75,11 +75,11 @@ public class Product {
         this.unit_qty = unit_qty;
     }
 
-    public String getUnit_price() {
+    public double getUnit_price() {
         return unit_price;
     }
 
-    public void setUnit_price(String unit_price) {
+    public void setUnit_price(double unit_price) {
         this.unit_price = unit_price;
     }
 
