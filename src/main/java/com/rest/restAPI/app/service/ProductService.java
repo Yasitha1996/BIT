@@ -56,6 +56,7 @@ public class ProductService {
     }
 
     public String updateInventory(Integer product_id, Integer qty) {
+        System.out.println(product_id+" test "+qty);
         String result =null;
         try {
             result = productRepo.checkAvailability(product_id);

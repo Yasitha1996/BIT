@@ -1,8 +1,11 @@
 package com.rest.restAPI.app.mapping;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.util.Date;
 
 @Entity
@@ -23,8 +26,17 @@ public class Order {
     @Column(name = "delivery_address")
     private String delivery_address;
 
+    @Column(name = "delivery_location")
+    private String delivery_location;
+
     @Column(name = "status")
     private String status;
+
+    @Column(name = "pay_method")
+    private String pay_method;
+
+    /*@Column(name = "date_initiated")
+    private Date date_initiated;*/
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

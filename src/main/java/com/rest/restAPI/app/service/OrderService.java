@@ -1,5 +1,6 @@
 package com.rest.restAPI.app.service;
 
+import com.rest.restAPI.app.bean.JobItemBean;
 import com.rest.restAPI.app.mapping.Cart;
 import com.rest.restAPI.app.mapping.Order;
 import com.rest.restAPI.app.mapping.Product;
@@ -48,5 +49,72 @@ public class OrderService {
             System.out.println(e);
         }
         return orders;
+    }
+
+    public List<JobItemBean> getJobList(){
+        List<JobItemBean> jobList = new ArrayList<>();
+        try {
+            List<Order> list = orderRepo.getJobItemList();
+            for (Order o :
+                    list) {
+                JobItemBean jobItemBean = new JobItemBean();
+                jobItemBean.setOrder_id(o.getOrder_id());
+                jobItemBean.setDelivery_address(o.getDelivery_address());
+                jobItemBean.setDelivery_location(o.getDelivery_location());
+                jobItemBean.setStatus(o.getStatus());
+                jobItemBean.setPay_method(o.getPay_method());
+                jobItemBean.setTotal(o.getTotal());
+                jobItemBean.setFirstName(o.getCustomer().getFirstname());
+                jobItemBean.setLastName(o.getCustomer().getLastname());
+                jobItemBean.setContact(o.getCustomer().getPhone());
+                jobItemBean.setUsername(o.getCustomer().getUsername());
+                jobList.add(jobItemBean);
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+       return jobList;
+    }
+
+    public String jobUpdated(int order_id){
+        String result = "";
+        try {
+         boolean jobUpdate = orderRepo.jobUpdated(order_id);
+         if(jobUpdate == true){
+             result = "successful";
+         }else {
+             result = "unsuccessful";
+         }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return result;
+    }
+
+    public List<JobItemBean> getAddedJobList(int deliverer_id){
+        List<JobItemBean> jobList = new ArrayList<>();
+        try {
+            List<Order> list = orderRepo.getJobList(deliverer_id);
+            for (Order o :
+                    list) {
+                JobItemBean jobItemBean = new JobItemBean();
+                jobItemBean.setOrder_id(o.getOrder_id());
+                jobItemBean.setDelivery_address(o.getDelivery_address());
+                jobItemBean.setDelivery_location(o.getDelivery_location());
+                jobItemBean.setStatus(o.getStatus());
+                jobItemBean.setPay_method(o.getPay_method());
+                jobItemBean.setTotal(o.getTotal());
+                jobItemBean.setFirstName(o.getCustomer().getFirstname());
+                jobItemBean.setLastName(o.getCustomer().getLastname());
+                jobItemBean.setContact(o.getCustomer().getPhone());
+                jobItemBean.setUsername(o.getCustomer().getUsername());
+                jobList.add(jobItemBean);
+
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return jobList;
     }
 }
