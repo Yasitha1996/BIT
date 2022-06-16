@@ -41,7 +41,7 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    @GetMapping("/addJob")
+    @PostMapping("/addJob")
     public @ResponseBody HashMap<String, String> addJob(int order_id){
         HashMap<String, String> result = new HashMap<>();
         try {

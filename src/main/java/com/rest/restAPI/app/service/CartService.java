@@ -27,10 +27,12 @@ public class CartService {
         customer.setId(cartBean.getCustomer_id());
         order.setCustomer(customer);
         order.setDelivery_address(cartBean.getAddress());
+        //order.setTotal(cartBean.getAmount());
         order.setTotal(cartBean.getAmount());
         //order.setDate_initiated(cartBean.getDate());
         order.setDelivery_location(cartBean.getDelivery_location());
         order.setStatus("2");
+        order.setDate_initiated(cartBean.getDate_initiated());
         order.setPay_method(cartBean.getPay_method());
         System.out.println("test4");
 

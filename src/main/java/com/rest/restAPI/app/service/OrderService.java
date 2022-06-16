@@ -80,14 +80,16 @@ public class OrderService {
     public String jobUpdated(int order_id){
         String result = "";
         try {
-         boolean jobUpdate = orderRepo.jobUpdated(order_id);
-         if(jobUpdate == true){
+             //orderRepo.jobUpdated(order_id);
+             result = "Success";
+         /*if(orderRepo.jobUpdated(order_id)){
              result = "successful";
          }else {
              result = "unsuccessful";
-         }
+         }*/
         }catch (Exception e){
             System.out.println(e);
+            result = "Failed";
         }
         return result;
     }

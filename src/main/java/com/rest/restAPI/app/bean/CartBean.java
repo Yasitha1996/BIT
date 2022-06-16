@@ -6,11 +6,21 @@ import java.util.List;
 import java.util.Map;
 
 public class CartBean {
-    private int amount;
+    private double amount;
     private String address;
     private int customer_id;
 
     private String pay_method;
+
+    private String date_initiated;
+
+    public String getDate_initiated() {
+        return date_initiated;
+    }
+
+    public void setDate_initiated(String date_initiated) {
+        this.date_initiated = date_initiated;
+    }
 
     public String getPay_method() {
         return pay_method;
@@ -41,11 +51,11 @@ public class CartBean {
 
     private List<Map<String, Object>> items;
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

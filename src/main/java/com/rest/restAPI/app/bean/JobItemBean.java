@@ -10,7 +10,7 @@ import lombok.*;
 public class JobItemBean {
 
     private int order_id;
-    private int total;
+    private double total;
     private String delivery_address;
     private String status;
     private String delivery_location;

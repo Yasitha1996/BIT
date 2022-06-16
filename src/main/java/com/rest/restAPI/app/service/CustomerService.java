@@ -52,6 +52,22 @@ public class CustomerService {
         return isCustomer;
     }
 
+    public boolean updateCustomer(Customer cus){
+        Customer customer = new Customer();
+        boolean result = false;
+        try {
+            customer = cusRepo.findByUsername(cus.getUsername());
+            customer.setAddress(cus.getAddress());
+            customer.setPhone(cus.getPhone());
+            cusRepo.save(customer);
+            result = true;
+        } catch (Exception e){
+            System.out.println(e);
+        }
+
+        return result;
+    }
+
 
 
 

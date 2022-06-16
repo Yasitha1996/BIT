@@ -18,10 +18,10 @@ public class Order {
     private int order_id;
 
     @Column(name = "total")
-    private Integer total;
+    private double total;
 
-   /* @Column(name = "date")
-    private Date date;*/
+    @Column(name = "date_initiated")
+    private String date_initiated;
 
     @Column(name = "delivery_address")
     private String delivery_address;
